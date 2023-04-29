@@ -1,0 +1,3 @@
+type UserFormProps = {
+  user: User
+};

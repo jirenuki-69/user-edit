@@ -1,20 +1,27 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { NavigationContainer, DefaultTheme } from '@react-navigation/native';
+import { Stack } from './src/navigation/stack';
+import HomeScreen from './src/screens/HomeScreen';
+import UsersScreen from './src/screens/UsersScreen';
+import UserEditScreen from './src/screens/UserEditScreen';
+
+const MyTheme = {
+  ...DefaultTheme,
+  colors: {
+    ...DefaultTheme.colors,
+    background: '#fff'
+  },
+};
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
+    <NavigationContainer theme={MyTheme}>
       <StatusBar style="auto" />
-    </View>
+      <Stack.Navigator screenOptions={{ headerShown: false }}>
+        <Stack.Screen name="home" component={HomeScreen} />
+        <Stack.Screen name="users" component={UsersScreen} />
+        <Stack.Screen name="user-edit" component={UserEditScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
